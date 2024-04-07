@@ -1,4 +1,5 @@
 {
+    "manifest_version" : 3,
     "name" : "Kid Shield",
     "version" : "1.0.0",
     "description" : "Kid Shield is an extension that helps parents to protect their children from inappropriate content on the internet.",
@@ -6,5 +7,13 @@
     "action" : {
         "default_popup" : "index.html",
         "default title" : "Kid Shield"
+    },
+    "permissions": [
+        "tabs"
+    ],
+    "background" : {
+        "scripts" : [
+            "background.js"
+        ]
     }
 }
