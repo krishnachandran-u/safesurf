@@ -1,12 +1,12 @@
 {
     "manifest_version" : 3,
-    "name" : "Kid Shield",
+    "name" : "SafeSurf",
     "version" : "1.0.0",
-    "description" : "Kid Shield is an extension that helps parents to protect their children from inappropriate content on the internet.",
+    "description" : "SafeSurf is an extension that helps parents to protect their children from inappropriate content on the internet.",
     "author" : "Krishnachandran",
     "action" : {
         "default_popup" : "index.html",
-        "default title" : "Kid Shield"
+        "default title" : "SafeSurf"
     },
     "background" : {
         "scripts" : [
