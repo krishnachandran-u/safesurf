@@ -8,12 +8,26 @@
         "default_popup" : "index.html",
         "default title" : "Kid Shield"
     },
-    "permissions": [
-        "tabs"
-    ],
     "background" : {
         "scripts" : [
-            "background.js"
+            "background.js",
+            "script.js"
         ]
-    }
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "scripting",
+        "<all_urls>"
+    ],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["script.js"]
+        }
+    ]
 }
