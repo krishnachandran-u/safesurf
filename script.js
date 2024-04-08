@@ -26,7 +26,11 @@ async function getContent(url) {
         }
         return response.text();
       })
-      .then(data => data)
+      .then(data => {
+        // Replace all non-alphabetic characters with spaces
+        const plainText = data.replace(/[^a-zA-Z]/g, ' ');
+        return plainText;
+      })
       .catch(error => {
         console.error('Error:', error);
         return null;
