@@ -10,8 +10,7 @@
     },
     "background" : {
         "scripts" : [
-            "background.js",
-            "script.js"
+            "background.js"
         ]
     },
     "permissions": [
