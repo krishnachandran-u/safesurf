@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', getCurrentTab);
 // document.addEventListener('DOMContentLoaded', getContent("https://github.com/"));
+//chrome.tabs.onUpdated.addListener(getCurrentTab);
 
 async function getCurrentTab() {
     try {
       let queryOptions = { active: true, lastFocusedWindow: true };
       let [tab] = await chrome.tabs.query(queryOptions);
   
-      const urlDiv = document.getElementById('url');
+      var urlDiv = document.getElementById('url');
       urlDiv.textContent = tab.url;
   
       const content = await getContent(tab.url);
-      const contentDiv = document.getElementById('content');
-      const wordsDiv = document.getElementById('words');
+      var contentDiv = document.getElementById('content');
+      var wordsDiv = document.getElementById('words');
   
       const isWordPresent = content.some(word => words.some(w => w.toLowerCase() === word.toLowerCase()));
       contentDiv.innerHTML = isWordPresent ? "YES" : "NO";
@@ -19,6 +20,7 @@ async function getCurrentTab() {
       if (isWordPresent) {
         const detectedWords = content.filter(word => words.some(w => w.toLowerCase() === word.toLowerCase()));
         wordsDiv.innerHTML = `Detected words: ${detectedWords.join(', ')}`;
+        chrome.runtime.sendMessage({ type: "analyzeResult", isPresent: isWordPresent, detectedWords });
       } else {
         wordsDiv.innerHTML = '';
       }
