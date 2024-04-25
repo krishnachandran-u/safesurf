@@ -11,6 +11,7 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
         const detectedWords = content.filter(word => words.some(w => w.toLowerCase() === word.toLowerCase()));
         console.log(`Inappropriate words detected: ${detectedWords.join(', ')}`);
 
+        notify(detectedWords); 
         chrome.tabs.update(details.tabId, { url: 'https://example.com' });
       }
     } catch (error) {
@@ -18,6 +19,20 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
     }
   }
 }, { url: [{ hostContains: '' }] });
+
+async function notify(detectedWords) {
+  const notificationOptions = {
+    type: "basic",
+    iconUrl: "notification.png", // Replace with the path to your notification icon
+    title: "Inappropriate Content Detected!",
+    //message: detectedWords ? `Words: ${detectedWords.join(', ')}` : "",
+    message: "Forwarding to a safe page."
+  };
+
+  chrome.notifications.create("inappropriate-content", notificationOptions, (notificationId) => {
+    console.log(`Notification created: ${notificationId}`);
+  });
+}
 
 async function getContent(url) {
   return fetch(url)
