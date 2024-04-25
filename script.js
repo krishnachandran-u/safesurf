@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', getCurrentTab);
 // document.addEventListener('DOMContentLoaded', getContent("https://github.com/"));
 //chrome.tabs.onUpdated.addListener(getCurrentTab);
@@ -52,6 +53,7 @@ async function getContent(url) {
         return null;
       });
   }
+*/
   
   const words = [
     "2g1c",
