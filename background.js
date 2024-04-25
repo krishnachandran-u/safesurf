@@ -1,3 +1,38 @@
+//default settings
+const defaultSettings = {
+  notify: false,
+  redirect: true,
+};
+
+//Save default settings on installation
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.storage.local.get('settings', function(data) {
+    if (!data.settings) {
+      chrome.storage.local.set({ 'settings': defaultSettings }, function() {
+        console.log('Default settings saved');
+      });
+    }
+  });
+});
+
+//Save default settings on startup
+chrome.runtime.onStartup.addListener(function() {
+  chrome.storage.local.get('settings', function(data) {
+    chrome.storage.local.set({ 'settings': defaultSettings }, function() {
+        console.log('Default settings saved');
+    });
+  });
+});
+
+//Retrieve settings from storage
+async function getSettings(callback) {
+  chrome.storage.local.get('settings', function(data) {
+    const settings = data.settings || defaultSettings;
+    callback(settings);
+  });
+}
+
+//Redirect to a safe page if inappropriate content is detected
 chrome.webNavigation.onCommitted.addListener(async (details) => {
   if (details.frameId === 0 && details.tabId) {
     const tab = await chrome.tabs.get(details.tabId);
@@ -10,9 +45,13 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
       if (isWordPresent) {
         const detectedWords = content.filter(word => words.some(w => w.toLowerCase() === word.toLowerCase()));
         console.log(`Inappropriate words detected: ${detectedWords.join(', ')}`);
+        
+        chrome.storage.local.get('settings', function(data) {
+          const settings = data.settings || defaultSettings;
 
-        notify(detectedWords); 
-        chrome.tabs.update(details.tabId, { url: 'https://example.com' });
+          if(settings.notify === true) notify(detectedWords); 
+          if(settings.redirect === true) chrome.tabs.update(details.tabId, { url: 'https://example.com' });
+        });
       }
     } catch (error) {
       console.error('Error:', error);
@@ -20,13 +59,14 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
   }
 }, { url: [{ hostContains: '' }] });
 
+//Notify user on inappropriate content
 async function notify(detectedWords) {
   const notificationOptions = {
     type: "basic",
-    iconUrl: "notification.png", // Replace with the path to your notification icon
+    iconUrl: "notification.png",
     title: "Inappropriate Content Detected!",
-    //message: detectedWords ? `Words: ${detectedWords.join(', ')}` : "",
-    message: "Forwarding to a safe page."
+    message: detectedWords ? `Words: ${detectedWords.join(', ')}` : "",
+    //message: "Forwarding to a safe page."
   };
 
   chrome.notifications.create("inappropriate-content", notificationOptions, (notificationId) => {
@@ -34,6 +74,7 @@ async function notify(detectedWords) {
   });
 }
 
+//Fetch content from the URL and return unique words
 async function getContent(url) {
   return fetch(url)
     .then(response => {
@@ -54,6 +95,7 @@ async function getContent(url) {
     });
 }
 
+//List of inappropriate words
 const words = [
     "2g1c",
     "2 girls 1 cup",
@@ -126,7 +168,7 @@ const words = [
     "bung hole",
     "bunghole",
     "busty",
-    "butt",
+    // "butt",
     "buttcheeks",
     "butthole",
     "camel toe",
@@ -366,7 +408,7 @@ const words = [
     "sexo",
     "sexy",
     "sexual",
-    "sexually",
+    // "sexually",
     "sexuality",
     "shaved beaver",
     "shaved pussy",
@@ -443,7 +485,7 @@ const words = [
     "voyeurweb",
     "voyuer",
     "vulva",
-    "wank",
+    // "wank",
     "wetback",
     "wet dream",
     "white power",
