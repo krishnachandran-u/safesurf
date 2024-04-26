@@ -16,6 +16,8 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 //Save default settings on startup
+//For debugging purposes
+//Force applies default settings on every startup
 chrome.runtime.onStartup.addListener(function() {
   chrome.storage.local.get('settings', function(data) {
       chrome.storage.local.set({ 'settings': defaultSettings }, function() {

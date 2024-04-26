@@ -1,37 +1,12 @@
 /*
-chrome.storage.local.get('settings', function(data) {
-    const settings = data.settings;
-    document.getElementById('showNotificationCheckbox').checked = settings.notify;
-    document.getElementById('redirectCheckbox').checked = settings.redirect;
-});
+Open your extension's background page by going to chrome://extensions/ ("Developer mode" needs to be checked to see background pages)
 
-document.getElementById('showNotificationCheckbox').addEventListener('change', function() {
-    const newState = this.checked;
-  
-    chrome.storage.local.get('settings', function(data) {
-      const settings = data.settings || defaultSettings;
-      settings.notify = newState;
-  
-      chrome.storage.local.set({ 'settings': settings }, function() {
-        console.log('Settings updated');
-      });
-    });
-});
-  
-  document.getElementById('redirectCheckbox').addEventListener('change', function() {
-    const newState = this.checked;
-  
-    chrome.storage.local.get('settings', function(data) {
-      const settings = data.settings || defaultSettings;
-      settings.redirect = newState;
-  
-      chrome.storage.local.set({ 'settings': settings }, function() {
-        console.log('Settings updated');
-      });
-    });
-});
+Go to the Console tab and type this to get the current settings:
+
+chrome.storage.local.get(console.log)
 */
 
+// Event listener for the switches are added after the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     chrome.storage.local.get('settings', function(data) {
         const settings = data.settings;
