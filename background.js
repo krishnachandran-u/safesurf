@@ -1,6 +1,6 @@
 //default settings
 const defaultSettings = {
-  notify: false,
+  notify: true,
   redirect: false,
 };
 
@@ -18,11 +18,9 @@ chrome.runtime.onInstalled.addListener(function() {
 //Save default settings on startup
 chrome.runtime.onStartup.addListener(function() {
   chrome.storage.local.get('settings', function(data) {
-    if(!data.settings) {
       chrome.storage.local.set({ 'settings': defaultSettings }, function() {
           console.log('Default settings saved');
       });
-    }
   });
 });
 
