@@ -1,7 +1,7 @@
 //default settings
 const defaultSettings = {
   notify: false,
-  redirect: true,
+  redirect: false,
 };
 
 //Save default settings on installation
