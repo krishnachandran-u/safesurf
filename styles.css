@@ -1,7 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
+/*
+@keyframes colorChange {
+    0% {
+      background-color: green;
+    }
+    50% {
+      background-color: darkgreen;
+    }
+    100% {
+      background-color: green;
+    }
+}
+*/
+
 #root {
     background-color: black;
+    background-image: url('./bgImage.jpg');
+    background-size: cover;
     color: white;
     font-family: "Ubuntu", sans-serif;
     width: 250px;
@@ -12,6 +28,11 @@
     gap: 10px;
     justify-content: space-between;
     align-items: start;
+    /*
+    animation-name: colorChange;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    */
 }
 
 .switch {
