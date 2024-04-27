@@ -26,7 +26,7 @@ To load the extension in Google Chrome, follow these steps:
 
 Once the SafeSurf extension is installed and enabled, it will automatically start protecting your browsing session. Here's how it works:
 
-1. **Website Filtering**: SafeSurf maintains a list of potentially harmful or malicious websites. Whenever you attempt to visit a website flagged as unsafe, the extension will take the following actions based on your configured settings:
+1. **Website Filtering**: SafeSurf does not maintain a list of potentially harmful or malicious websites. Instead, it reads the content of the webpage you attempt to visit and takes the following actions before the page finishes loading, based on your configured settings:
 
    - **Redirection**: If the redirection option is enabled, SafeSurf will automatically redirect you to a safe webpage or a custom URL when you try to access an inappropriate site.
    - **Notification**: If the notification option is enabled, SafeSurf will display a warning message, alerting you that the website you're trying to access is potentially harmful or inappropriate.
