@@ -2,7 +2,7 @@
 
 SafeSurf is a Chrome extension designed to enhance your browsing experience by providing a safe and secure online environment. This extension aims to protect you from potentially harmful websites and promote responsible internet usage.
 
-<iframe src="https://drive.google.com/file/d/1ZwBCNqGtZ595LG76HaHkFkZs1Ez_qskQ/preview" width="640" height="480" allow="autoplay"></iframe>
+[safesurf.webm](https://github.com/krishnachandran-u/safesurf/assets/129476971/308b648a-def5-4d23-b646-82c24615bd5f)
 
 ## Installation
 
