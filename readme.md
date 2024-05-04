@@ -22,6 +22,8 @@ To load the extension in Google Chrome, follow these steps:
 - Navigate to the directory where you cloned the SafeSurf repository and select the `safesurf` folder.
 - The SafeSurf extension should now be loaded and visible in your Chrome extensions list.
 
+3. **Reload Chrome**
+
 ## Usage
 
 Once the SafeSurf extension is installed and enabled, it will automatically start protecting your browsing session. Here's how it works:
@@ -30,6 +32,15 @@ Once the SafeSurf extension is installed and enabled, it will automatically star
 
    - **Redirection**: If the redirection option is enabled, SafeSurf will automatically redirect you to a safe webpage or a custom URL when you try to access an inappropriate site.
    - **Notification**: If the notification option is enabled, SafeSurf will display a warning message, alerting you that the website you're trying to access is potentially harmful or inappropriate.
+2. **Statistics**: Shows statistics of the user.
+   - **Doughnut Chart**: SafeSurf provides a visual representation of the severity of the websites you visit, classified into five categories:
+      - neutral
+      - mild
+      - moderate
+      - severe
+      - extreme
+
+      This feature displays a doughnut chart, showing the distribution of the websites you've accessed across these categories, helping you monitor and manage your browsing habits more effectively.
 
 ## Contributions
 
