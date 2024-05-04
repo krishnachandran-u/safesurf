@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const labels = Object.keys(intensityCount);
         const dataValues = Object.values(intensityCount);
 
-        const colors = ['yellow', 'orange', 'red', 'darkred']; // Specify colors for mild, moderate, severe, extreme in order
+        const colors = ['darkred', 'yellow', 'orange', 'green', 'red']; // Specify colors for mild, moderate, severe, extreme in order
 
         new Chart(ctx, {
             type: 'doughnut',

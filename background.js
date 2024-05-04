@@ -4,12 +4,12 @@ const defaultSettings = {
   redirect: false,
 };
 const defaultIntensity = {
-  mild: 1,
-  moderate: 1,
-  severe: 1,
-  extreme: 1,
+  neutral: 1,
+  mild: 0,
+  moderate: 0,
+  severe: 0,
+  extreme: 0,
 }
-
 
 //Save default settings on installation
 chrome.runtime.onInstalled.addListener(function() {
@@ -86,6 +86,15 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
             chrome.storage.local.set({ 'intensity': intensityCount }, function() {
               console.log(`Intensity count updated: ${intensityCount}`);
             });
+          });
+        });
+      } else {
+        // Increment the neutral count in chrome storage
+        chrome.storage.local.get('intensity', function(data) {
+          const intensityCount = data.intensity || {};
+          intensityCount.neutral = (intensityCount.neutral || 0) + 1;
+          chrome.storage.local.set({ 'intensity': intensityCount }, function() {
+            console.log(`Intensity count updated: ${intensityCount}`);
           });
         });
       }
