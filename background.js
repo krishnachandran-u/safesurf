@@ -14,17 +14,25 @@ const defaultIntensity = {
 //Save default settings on installation
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.local.get('settings', function(data) {
-    if (!data.settings) {
       chrome.storage.local.set({ 'settings': defaultSettings }, function() {
         console.log('Default settings saved');
       });
-    }
+  });
+});
+
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.storage.local.get('intensity', function(data) {
+      chrome.storage.local.set({ 'intensity': defaultIntensity }, function() {
+          console.log('Default intensity saved');
+      });
   });
 });
 
 //Save default settings on startup
 //For debugging purposes
 //Force applies default settings on every startup
+
+/*
 chrome.runtime.onStartup.addListener(function() {
   chrome.storage.local.get('settings', function(data) {
       chrome.storage.local.set({ 'settings': defaultSettings }, function() {
@@ -40,6 +48,7 @@ chrome.runtime.onStartup.addListener(function() {
       });
   });
 });
+*/
 
 //Retrieve settings from storage
 async function getSettings(callback) {
@@ -111,8 +120,8 @@ async function notify(detectedWords) {
     type: "basic",
     iconUrl: "notification.png",
     title: "Inappropriate Content Detected!",
-    message: detectedWords ? `Words: ${detectedWords.join(', ')}` : "",
-    //message: "Forwarding to a safe page."
+    //message: detectedWords ? `Words: ${detectedWords.join(', ')}` : "",
+    message: "Enable redirect to block the content."
   };
 
   chrome.notifications.create("inappropriate-content", notificationOptions, (notificationId) => {
