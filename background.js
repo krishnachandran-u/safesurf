@@ -42,12 +42,10 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
 
     try {
       const content = await getContent(url);
-      const isWordPresent = content.some(word => words.some(w => w.toLowerCase() === word.toLowerCase()));
+      const detectedWords = content.filter(word => words.some(w => w.toLowerCase() === word.toLowerCase()));
+      console.log(`Inappropriate words detected: ${detectedWords.join(', ')}`);
 
-      if (isWordPresent) {
-        const detectedWords = content.filter(word => words.some(w => w.toLowerCase() === word.toLowerCase()));
-        console.log(`Inappropriate words detected: ${detectedWords.join(', ')}`);
-        
+      if (detectedWords.length >= 5) {
         chrome.storage.local.get('settings', function(data) {
           const settings = data.settings || defaultSettings;
 
