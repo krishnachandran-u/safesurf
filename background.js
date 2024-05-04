@@ -3,6 +3,13 @@ const defaultSettings = {
   notify: true,
   redirect: false,
 };
+const defaultIntensity = {
+  mild: 1,
+  moderate: 1,
+  severe: 1,
+  extreme: 1,
+}
+
 
 //Save default settings on installation
 chrome.runtime.onInstalled.addListener(function() {
@@ -22,6 +29,14 @@ chrome.runtime.onStartup.addListener(function() {
   chrome.storage.local.get('settings', function(data) {
       chrome.storage.local.set({ 'settings': defaultSettings }, function() {
           console.log('Default settings saved');
+      });
+  });
+});
+
+chrome.runtime.onStartup.addListener(function() {
+  chrome.storage.local.get('intensity', function(data) {
+      chrome.storage.local.set({ 'intensity': defaultIntensity }, function() {
+          console.log('Default intensity saved');
       });
   });
 });

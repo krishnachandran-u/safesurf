@@ -50,18 +50,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('myChart');
 
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-  });
+    chrome.storage.local.get('intensity', function(data) {
+        const intensityCount = data.intensity || {};
+        const labels = Object.keys(intensityCount);
+        const dataValues = Object.values(intensityCount);
+
+        const colors = ['yellow', 'orange', 'red', 'darkred']; // Specify colors for mild, moderate, severe, extreme in order
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Intensity',
+                    data: dataValues,
+                    backgroundColor: colors,
+                    borderWidth: 1
+                }]
+            },
+        });
+    });
 });
 
