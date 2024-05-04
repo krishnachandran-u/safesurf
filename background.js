@@ -51,6 +51,27 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
 
           if(settings.notify === true) notify(detectedWords); 
           if(settings.redirect === true) chrome.tabs.update(details.tabId, { url: 'https://example.com' });
+
+          // Classify based on the number of detected words
+          let intensity = '';
+          if (detectedWords.length >= 5 && detectedWords.length < 10) {
+            intensity = 'mild';
+          } else if (detectedWords.length >= 10 && detectedWords.length < 15) {
+            intensity = 'moderate';
+          } else if (detectedWords.length >= 15 && detectedWords.length < 20) {
+            intensity = 'severe';
+          } else if (detectedWords.length >= 20) {
+            intensity = 'extreme';
+          }
+
+          // Increment the category count in chrome storage
+          chrome.storage.local.get('intensity', function(data) {
+            const intensityCount = data.intensity || {};
+            intensityCount[intensity] = (intensityCount[intensity] || 0) + 1;
+            chrome.storage.local.set({ 'intensity': intensityCount }, function() {
+              console.log(`Intensity count updated: ${intensityCount}`);
+            });
+          });
         });
       }
     } catch (error) {

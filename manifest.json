@@ -32,7 +32,7 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["script.js"]
+            "js": ["script.js", "chart.umd.min.js"]
         }
     ]
 }

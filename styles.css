@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /*
 @keyframes colorChange {
@@ -15,11 +15,11 @@
 */
 
 #root {
-    background-color: black;
+    background-color: white;
     background-image: url('./bgImage.jpg');
     background-size: cover;
-    color: white;
-    font-family: "Ubuntu", sans-serif;
+    color: black;
+    font-family: "Ubuntu Mono", sans-serif;
     width: 250px;
     padding-left: 10px;
     padding-right: 10px;
@@ -33,6 +33,18 @@
     animation-duration: 20s;
     animation-iteration-count: infinite;
     */
+}
+
+.chart {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
 }
 
 .switch {
