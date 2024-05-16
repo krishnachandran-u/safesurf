@@ -63,7 +63,7 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
   if (details.frameId === 0 && details.tabId) {
     const tab = await chrome.tabs.get(details.tabId);
     const url = tab.url;
-    if(url === 'https://example.com/') return;
+    if(url === 'https://krishnachandran-u.github.io/safesurf/') return;
 
     try {
       const content = await getContent(url);
@@ -75,7 +75,7 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
           const settings = data.settings || defaultSettings;
 
           if(settings.notify === true) notify(detectedWords); 
-          if(settings.redirect === true) chrome.tabs.update(details.tabId, { url: 'https://example.com/' });
+          if(settings.redirect === true) chrome.tabs.update(details.tabId, { url: 'https://krishnachandran-u.github.io/safesurf/' });
 
           // Classify based on the number of detected words
           let intensity = '';
